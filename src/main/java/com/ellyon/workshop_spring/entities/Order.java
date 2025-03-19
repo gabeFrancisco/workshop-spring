@@ -4,7 +4,7 @@ import com.ellyon.workshop_spring.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +14,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date moment;
+    private Instant moment;
     private OrderStatus orderStatus;
 
     @ManyToOne
@@ -23,10 +23,9 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(Integer id, Date moment, OrderStatus orderStatus, User client) {
+    public Order(Integer id, Instant moment, User client) {
         this.id = id;
         this.moment = moment;
-        this.orderStatus = orderStatus;
         this.client = client;
     }
 
@@ -38,11 +37,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Date getMoment() {
+    public Instant getMoment() {
         return moment;
     }
 
-    public void setMoment(Date moment) {
+    public void setMoment(Instant moment) {
         this.moment = moment;
     }
 
